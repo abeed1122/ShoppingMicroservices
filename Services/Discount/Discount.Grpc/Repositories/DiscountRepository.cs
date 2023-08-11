@@ -17,11 +17,11 @@ namespace Discount.Grpc.Repositories
         {
             using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
 
-            var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>("Select * from Coupon where ProductName = @ProductName" , new { ProductName = productName});
+            var coupon = await connection.QueryFirstOrDefaultAsync<Coupon>("Select * from Coupon where ProductName = @ProductName", new { ProductName = productName });
 
-            if(coupon == null)
+            if (coupon == null)
             {
-                return new Coupon { ProductName = "No Discount" , Amount = 0 , Description = "No Discount Desc"};
+                return new Coupon { ProductName = "No Discount", Amount = 100, Description = "No Discount Desc" };
             }
             return coupon;
         }
