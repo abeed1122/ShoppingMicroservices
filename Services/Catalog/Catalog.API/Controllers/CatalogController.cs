@@ -33,7 +33,7 @@ namespace Catalog.API.Controllers
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductById(string id)
         {
-            var product = await _repository.GetProducts();
+            var product = await _repository.GetProduct(id);
             if (product == null)
             {
                 _logger.LogError($"Product with id: {id}, not found.");
